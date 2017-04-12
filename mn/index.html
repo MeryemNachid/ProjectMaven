@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" type="text/css" href="http://www.mkyong.com/wp-content/cache/minify/000000/4e283/default.include.341716.css" media="all" /><title>How to create a jar file with Maven</title><meta name="google-site-verification" content="VsVvSTVAouAluNodWeR30BeIWTr4c84HvN4Fn9WBsak"/><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords"  content="jar,maven" /><link rel="canonical" href="http://www.mkyong.com/maven/how-to-create-a-jar-file-with-maven/" /><link rel='dns-prefetch' href='//ajax.googleapis.com' /><link rel='dns-prefetch' href='//maxcdn.bootstrapcdn.com' /><link rel='dns-prefetch' href='//s.w.org' /><link rel='stylesheet' id='c16ss-style-css'  href='http://www.mkyong.com/wp-content/plugins/c16-social-share/css/c16ss.css?ver=4.7.3' type='text/css' media='all' /><link rel='stylesheet' id='prism-css'  href='http://www.mkyong.com/wp-content/themes/mkyong/css/prism.css?ver=1.2' type='text/css' media='all' /><link rel='stylesheet' id='style-css'  href='http://www.mkyong.com/wp-content/themes/mkyong/style.css?ver=1.4.9' type='text/css' media='all' /><link rel='https://api.w.org/' href='http://www.mkyong.com/wp-json/' /><link rel="alternate" type="application/json+oembed" href="http://www.mkyong.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.mkyong.com%2Fmaven%2Fhow-to-create-a-jar-file-with-maven%2F" /><link rel="alternate" type="text/xml+oembed" href="http://www.mkyong.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.mkyong.com%2Fmaven%2Fhow-to-create-a-jar-file-with-maven%2F&#038;format=xml" /> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-2836379775501347",enable_page_level_ads:true});</script></head><body><header class="navbar navbar-static-top navbar-default" id="top" role="navigation"><div class="container"><div class="navbar-header"> <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a href="/" class="navbar-brand"> <img src="http://www.mkyong.com/wp-content/themes/mkyong/images/logo.png" width="168px" height="30px"/> </a></div> <nav id="bs-navbar" class="collapse navbar-collapse"><ul class="nav navbar-nav"></ul><ul id="menu-topmenu" class="nav navbar-nav navbar-right"><li id="menu-item-14518" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14518"><a title="Get All Tutorials" href="http://www.mkyong.com/all-tutorials-on-mkyong-com/"><span class="glyphicon All Tutorials"></span>&nbsp;Get All Tutorials</a></li><li id="menu-item-14517" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14517"><a title="Java 8" href="http://www.mkyong.com/tutorials/java-8-tutorials/">Java 8</a></li><li id="menu-item-14519" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14519"><a title="Spring Boot" href="http://www.mkyong.com/tutorials/spring-boot-tutorials/">Spring Boot</a></li><li id="menu-item-14520" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14520"><a title="Android" href="http://www.mkyong.com/tutorials/android-tutorial/">Android</a></li><li id="menu-item-14522" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14522"><a title="Write For Us" href="http://www.mkyong.com/write-for-us/">Write For Us</a></li><li id="menu-item-14521" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14521"><a title="Contact Us" href="http://www.mkyong.com/contact-mkyong/"><span class="glyphicon Contact Us"></span>&nbsp;Contact Us</a></li><li><form role="search" method="get" class="navbar-form" action="//www.mkyong.com/search/"><input type="hidden" name="cx" value="partner-pub-2836379775501347:3714346998" /><input type="hidden" name="cof" value="FORID:10" /><input type="hidden" name="ie" value="UTF-8" /><input type="text" name="q" class="form-control" placeholder="Search..."></form></li></ul> </nav></div></header><div class="align-center background-grey"><div class="ads-top" style="width:100%"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2836379775501347" data-ad-slot="5333521399" data-ad-format="auto" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div><div id="post-container"><div class="container"><div class="row"><div class="col-md-11"><!-- google_ad_section_start(name=mkyongregion) --><div id="left-container"> <article id="post-12775"><h1>How to create a jar file with Maven</h1><div class="post-meta"><p class="post-meta">By <a href=http://www.mkyong.com/author/mkyong/ title="mkyong" rel="author">mkyong</a> | <time datetime="2012-11-02T10:14:44+00:00">November 2, 2012</time> | Updated : October 19, 2014 | Viewed : 344,433 times <span>+2,120 pv/w</span></p></div><div class="post-content"><div class="pic"> <img src="http://www.mkyong.com/wp-content/uploads/2012/11/java-jar-with-maven.jpg" alt="java jar with maven" title="java-jar-with-maven" width="229" height="108" /></div><p>In this tutorial, we will show you how to use Maven build tool, to create a single executable Jar, and how to deal with the project&#8217;s dependencies.</p><p>Tools used :</p><ol><li>Maven 3.1.1</li><li>JDK 1.7</li><li>log4j 1.2.17</li><li>Joda-time 2.5</li><li>Eclipse 4.3</li></ol><h2>1. Create a simple Java project</h2><p>Create a Java project from the Maven quick start template.</p><pre><code class="language-bash">
+$ mvn archetype:generate -DgroupId=com.mkyong.core.utils -DartifactId=dateUtils 
+ -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</code></pre><p>The following files and folder structure will be created.</p><pre><code class="language-bash">
+.
+|____dateUtils
+| |____pom.xml
+| |____src
+| | |____main
+| | | |____java
+| | | | |____com
+| | | | | |____mkyong
+| | | | | | |____core
+| | | | | | | |____utils
+| | | | | | | | |____App.java
+| | |____test
+| | | |____java
+| | | | |____com
+| | | | | |____mkyong
+| | | | | | |____core
+| | | | | | | |____utils
+| | | | | | | | |____AppTest.java
+</code></pre><p>Above folder structure is not enough, create a <code>log4j.properties</code> file and put it in <code>src/main/resources/log4j.properties</code>, just create the resources folder manually.</p><div class="filename">log4j.properties</div><pre><code class="language-bash">
+# Root logger option
+log4j.rootLogger=DEBUG, stdout
+ 
+# Direct log messages to stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+</code></pre><p>Make it support Eclipse.</p><pre><code class="language-bash">
+$ mvn eclipse:eclipse
+</code></pre><p>And imports the project into Eclipse IDE, the final project structure should be like this :</p><div class="pic"> <img src="http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-a-jar.jpg" alt="maven-create-a-jar" width="487" height="407" class="alignnone size-full wp-image-13477" srcset="http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-a-jar.jpg 487w, http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-a-jar-300x250.jpg 300w" sizes="(max-width: 487px) 100vw, 487px" /></div><div class="ads-in-post hide_if_width_less_800"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle hide_if_width_less_800" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="7391621200" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><h2>2. Update Pom.xml</h2><p>Update <code>pom.xml</code> to declare both log4j and the jodatime dependencies, for output to a <code>jar</code> format, make sure the packaging is set to &#8220;jar&#8221;. Read below comment for self-explanatory.</p><div class="filename">pom.xml</div><pre><code class="language-markup">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;com.mkyong.core.utils&lt;/groupId&gt;
+	&lt;artifactId&gt;dateUtils&lt;/artifactId&gt;
+	
+	&lt;!-- Output to jar format --&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+	
+	&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+	&lt;name&gt;dateUtils&lt;/name&gt;
+	&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+	&lt;properties&gt;
+		&lt;jdk.version&gt;1.7&lt;/jdk.version&gt;
+		&lt;jodatime.version&gt;2.5&lt;/jodatime.version&gt;
+		&lt;junit.version&gt;4.11&lt;/junit.version&gt;
+		&lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/groupId&gt;
+			&lt;artifactId&gt;junit&lt;/artifactId&gt;
+			&lt;version&gt;${junit.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;joda-time&lt;/groupId&gt;
+			&lt;artifactId&gt;joda-time&lt;/artifactId&gt;
+			&lt;version&gt;${jodatime.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;${log4j.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;build&gt;
+		&lt;finalName&gt;dateutils&lt;/finalName&gt;
+		&lt;plugins&gt;
+
+			&lt;!-- download source code in Eclipse, best practice --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-eclipse-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.9&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;downloadSources&gt;true&lt;/downloadSources&gt;
+					&lt;downloadJavadocs&gt;false&lt;/downloadJavadocs&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+			&lt;!-- Set a JDK compiler level --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.3.2&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;${jdk.version}&lt;/source&gt;
+					&lt;target&gt;${jdk.version}&lt;/target&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+			&lt;!-- Make this jar executable --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+				  &lt;!-- DO NOT include log4j.properties file in your Jar --&gt;
+				  &lt;excludes&gt;
+					&lt;exclude&gt;**/log4j.properties&lt;/exclude&gt;
+				  &lt;/excludes&gt;
+				  &lt;archive&gt;
+					&lt;manifest&gt;
+						&lt;!-- Jar file entry point --&gt;
+						&lt;mainClass&gt;com.mkyong.core.utils.App&lt;/mainClass&gt;
+					&lt;/manifest&gt;
+				  &lt;/archive&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+&lt;/project&gt;
+</code></pre><div class="ads-in-post hide_if_width_less_800"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle hide_if_width_less_800" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="3642936086" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><h2>3. Update App.java</h2><p>Update the generated <code>App.java</code> with the following content :</p><div class="filename">App.java</div><pre><code class="language-java">
+package com.mkyong.core.utils;
+
+import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
+
+public class App {
+
+	private static final Logger logger = Logger.getLogger(App.class);
+
+	public static void main(String[] args) {
+		System.out.println(getLocalCurrentDate());
+	}
+
+	private static String getLocalCurrentDate() {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("getLocalCurrentDate() is executed!");
+		}
+
+		LocalDate date = new LocalDate();
+		return date.toString();
+
+	}
+
+}
+</code></pre><p>Now, this project has two dependencies : log4j and jodatime.</p><h2>4. Working with Dependencies</h2><p><em>4.1. How can I add dependencies in a jar?</em></p><p>&#8211; You can put both log4j.jar and jodatime.jar inside the final.jar, but your classes are unable to call other classes which is inside the unpack log4j.jar, Java jar is designed like this, unless you create a special class loader like one-jar plugin.</p><p>&#8211; Alternatively, use <code>maven-assembly-plugin</code> to extract all dependency jars into raw classes, and group it together. Read this <a href="http://stackoverflow.com/questions/1729054/including-dependencies-in-a-jar-with-maven" target="_blank">StackOverflow thread</a>. This hack is workable in project with less dependencies only, for large project with many dependencies, it will cause Java class name conflict issue.</p><p>&#8211; Try <a href="https://code.google.com/p/onejar-maven-plugin/" target="_blank">one-jar plugin</a>, it will create a fat-jar, which includes the entire project&#8217;s dependencies into a single jar file, read this article &#8211; <a href="http://www.mkyong.com/maven/maven-create-a-fat-jar-file-one-jar-example/" target="_blank">Create a fat Jar file with Maven</a></p><p><em>4.2 <strong>Solution</strong></em><br /> The one-jar solution is really good, but I don&#8217;t like the custom class loader and fat-jar concept. My simplest and always working solution is copy the entire project&#8217;s dependencies to a pre-defined folder, and define the dependency classpath in the jar&#8217;s manifest file.</p><p>Below is the updated and final <code>pom.xml</code>, to use <code>maven-dependency-plugin</code> to copy all dependencies to <code>target/dependency-jars/</code> folder, and use <code>maven-jar-plugin</code> to add the  dependency classpath.</p><div class="filename">pom.xml</div><pre><code class="language-markup">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;com.mkyong.core.utils&lt;/groupId&gt;
+	&lt;artifactId&gt;dateUtils&lt;/artifactId&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+	&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+	&lt;name&gt;dateUtils&lt;/name&gt;
+	&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+	&lt;properties&gt;
+		&lt;jdk.version&gt;1.7&lt;/jdk.version&gt;
+		&lt;jodatime.version&gt;2.5&lt;/jodatime.version&gt;
+		&lt;junit.version&gt;4.11&lt;/junit.version&gt;
+		&lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/groupId&gt;
+			&lt;artifactId&gt;junit&lt;/artifactId&gt;
+			&lt;version&gt;${junit.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;joda-time&lt;/groupId&gt;
+			&lt;artifactId&gt;joda-time&lt;/artifactId&gt;
+			&lt;version&gt;${jodatime.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/groupId&gt;
+			&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;version&gt;${log4j.version}&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;build&gt;
+		&lt;finalName&gt;dateutils&lt;/finalName&gt;
+		&lt;plugins&gt;
+
+			&lt;!-- download source code in Eclipse, best practice --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-eclipse-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.9&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;downloadSources&gt;true&lt;/downloadSources&gt;
+					&lt;downloadJavadocs&gt;false&lt;/downloadJavadocs&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+			&lt;!-- Set a compiler level --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.3.2&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;${jdk.version}&lt;/source&gt;
+					&lt;target&gt;${jdk.version}&lt;/target&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+			&lt;!-- Make this jar executable --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+				  &lt;excludes&gt;
+					&lt;exclude&gt;**/log4j.properties&lt;/exclude&gt;
+				  &lt;/excludes&gt;
+				  &lt;archive&gt;
+				    &lt;manifest&gt;
+					&lt;addClasspath&gt;true&lt;/addClasspath&gt;
+					&lt;mainClass&gt;com.mkyong.core.utils.App&lt;/mainClass&gt;
+					&lt;classpathPrefix&gt;dependency-jars/&lt;/classpathPrefix&gt;
+				    &lt;/manifest&gt;
+				  &lt;/archive&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+
+			&lt;!-- Copy project dependency --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.5.1&lt;/version&gt;
+				&lt;executions&gt;
+				  &lt;execution&gt;
+					&lt;id&gt;copy-dependencies&lt;/id&gt;
+					&lt;phase&gt;package&lt;/phase&gt;
+					&lt;goals&gt;
+						&lt;goal&gt;copy-dependencies&lt;/goal&gt;
+					&lt;/goals&gt;
+					&lt;configuration&gt;
+					  &lt;!-- exclude junit, we need runtime dependency only --&gt;
+					  &lt;includeScope&gt;runtime&lt;/includeScope&gt;
+					  &lt;outputDirectory&gt;${project.build.directory}/dependency-jars/&lt;/outputDirectory&gt;
+					&lt;/configuration&gt;
+				  &lt;/execution&gt;
+				&lt;/executions&gt;
+			&lt;/plugin&gt;
+
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+&lt;/project&gt;
+</code></pre><h2>5.The final Jar file</h2><p>5.1 Package the project.</p><pre><code class="language-bash">
+$ mvn package
+</code></pre><p>Review the folder structure in the target folder</p><div class="pic"> <img src="http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-jar-dependency-jars.jpg" alt="maven-create-jar-dependency-jars" width="754" height="304" class="alignnone size-full wp-image-13478" srcset="http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-jar-dependency-jars.jpg 754w, http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-jar-dependency-jars-300x120.jpg 300w" sizes="(max-width: 754px) 100vw, 754px" /></div><p>A <code>dateutils.jar</code> is created, and the entire project runtime dependencies (excluded junit) are copied to <code>target/dependency-jars/</code> folder.</p><p>5.2 List out the <code>dateutils.jar</code> content :</p><pre><code class="language-bash">
+$ jar tf target/dateutils.jar 
+META-INF/
+META-INF/MANIFEST.MF
+com/
+com/mkyong/
+com/mkyong/core/
+com/mkyong/core/utils/
+com/mkyong/core/utils/App.class
+META-INF/maven/
+META-INF/maven/com.mkyong.core.utils/
+META-INF/maven/com.mkyong.core.utils/dateUtils/
+META-INF/maven/com.mkyong.core.utils/dateUtils/pom.xml
+META-INF/maven/com.mkyong.core.utils/dateUtils/pom.properties
+</code></pre><p>5.3 Extracts and review the content of <code>MANIFEST.MF</code>, the dependencies are added in the <code>Class-Path</code>.</p><div class="filename">META_INF/MANIFEST.MF</div><pre><code class="language-bash">
+Manifest-Version: 1.0
+Built-By: mkyong
+Build-Jdk: 1.7.0_05
+Class-Path: dependency-jars/joda-time-2.5.jar dependency-jars/log4j-1.2.17.jar
+Created-By: Apache Maven 3.1.1
+Main-Class: com.mkyong.core.utils.App
+Archiver-Version: Plexus Archiver
+</code></pre><p>5.4 Run it</p><pre><code class="language-bash">
+$ java -jar target/dateutils.jar 
+
+log4j:WARN No appenders could be found for logger (com.mkyong.core.utils.App).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2014-10-19
+</code></pre><p>Oppss&#8230;</p><p>5.5 Where is <code>log4j.properties</code>?<br /> This is a GOOD practice to exclude the <code>log4j.properties</code> in the jar file, to avoid issues like multiple <code>log4j.properties</code> files in classpath.</p><p>You can still pass in the log4j properties via the <code>log4j.configuration</code> system property like this :</p><pre><code class="language-bash">
+$ java -jar -Dlog4j.configuration=file:/full_path/log4j.properties target/dateutils.jar 
+
+17:09:15,385 DEBUG App:18 - getLocalCurrentDate() is executed!
+2014-10-19														
+</code></pre><div class="note"> <strong>Note</strong><br /> In future, if you want to move <code>dateUtils.jar</code>, make sure to copy its <code>dependency-jars</code> folder as well. If you have a better idea, do share with me, thanks.</div><p>Done.</p><h2>Download Source Code</h2><div class="download"> Download &#8211; <a href="http://www.mkyong.com/wp-content/uploads/2012/11/maven-create-a-jar.zip">maven-create-a-jar.zip</a> (7 KB)</div><h2>References</h2><ol><li><a href="http://maven.apache.org/plugins/maven-dependency-plugin/copy-dependencies-mojo.html" target="_blank">dependency:copy-dependencies</a></li><li><a href="http://maven.apache.org/archetype/maven-archetype-plugin/usage.html" target="_blank">Maven-archetype-plugin official page.</a></li><li><a href="http://www.mkyong.com/java/how-to-make-an-executable-jar-file/" target="_blank">How to make an executable jar file</a></li><li><a href="https://code.google.com/p/onejar-maven-plugin/" target="_blank">One-JAR</a></li><li><a href="http://www.mkyong.com/maven/maven-exclude-log4j-properties-in-jar-file/" target="_blank">Maven – Exclude log4j.properties in Jar file</a></li><li><a href="http://www.mkyong.com/maven/maven-create-a-fat-jar-file-one-jar-example/" target="_blank">Maven – Create a fat Jar file &#8211; One-JAR example</a></li></ol></div><div id="post-tags"> Tags : <span class="post-tag"><a href="http://www.mkyong.com/tag/jar/" rel="tag">jar</a> <a href="http://www.mkyong.com/tag/maven/" rel="tag">maven</a></span></div><div id="c16ss"><h2>Share this article on</h2><a class="c16ss-twitter c16ss-link" href="https://twitter.com/intent/tweet?text=How to create a jar file with Maven&amp;url=http://www.mkyong.com/maven/how-to-create-a-jar-file-with-maven/&amp;via=mkyong">Twitter</a><a class="c16ss-fb c16ss-link" href="https://www.facebook.com/sharer/sharer.php?u=http://www.mkyong.com/maven/how-to-create-a-jar-file-with-maven/">Facebook</a><a class="c16ss-google c16ss-link" href="https://plus.google.com/share?url=http://www.mkyong.com/maven/how-to-create-a-jar-file-with-maven/">Google+</a></div><br/> <img height='0' width='0' alt='' src='//pixel.watch/eey7' style='display:block;' /><script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="0">/*<![CDATA[*/(function(i,d,s,o,m,r,c,l,w,q,y,h,g){var e=d.getElementById(r);if(e===null){var t=d.createElement(o);t.src=g;t.id=r;t.setAttribute(m,s);t.async=1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t,n);var dt=new Date().getTime();try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}}else if(typeof i[c]!=='undefined'){i[c]++}
+else{i[c]=1;}})(window,document,'InContent','script','mediaType','carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=myky82&did=112239&wid=0')/*]]>*/</script><h3>About the Author</h3><div id="author-info"> <img alt='' src='http://0.gravatar.com/avatar/622c70d2908e68ecc070ca6754245bb2?s=82&#038;r=g' srcset='http://0.gravatar.com/avatar/622c70d2908e68ecc070ca6754245bb2?s=164&amp;r=g 2x' class='avatar avatar-82 photo' height='82' width='82' /><div class='title'>mkyong</div> Founder of <a href="http://mkyong.com" rel="nofollow">Mkyong.com</a>, love Java and open source stuff. Follow him on <a href="https://twitter.com/mkyong">Twitter</a>, or befriend him on <a href="http://www.facebook.com/java.tutorial">Facebook</a> or <a href="https://plus.google.com/110948163568945735692?rel=author">Google Plus</a>. If you like my tutorials, consider make a donation to <a href="http://www.mkyong.com/blog/donate-to-charity/">these charities</a>.</div><h3>Related Posts</h3> <input type="hidden" id="mkyong-postId" value="12775"><div class="pvbox-container"><div class="row"><div class="col-md-8"><div id="related-post"></div></div><div class="col-md-7"><div class="align-center"><div class="ads-after-post"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="7146814087" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div></div></div><div class="clearfix"></div><h3>Popular Posts</h3><div class="hide_if_width_less_800"><div id='top-articles-below-author'>Loading...</div></div><h3>Comments</h3><div id="comment"><div id="disqus_thread"><div id="dsq-content"><ul id="dsq-comments"><li class="comment even thread-even depth-1" id="dsq-comment-138522"><div id="dsq-comment-header-138522" class="dsq-comment-header"> <cite id="dsq-cite-138522"> <span id="dsq-author-user-138522">Carl</span> </cite></div><div id="dsq-comment-body-138522" class="dsq-comment-body"><div id="dsq-comment-message-138522" class="dsq-comment-message"><p>Hello.</p><p>Nice tutorial!!<br /> I have a question, why do you write in the pom.xml the next property?</p><p> 1.6</p><p>I think this is to indicate that jdk 1.6 is needed, but I don&#8217;t sure.</p><p>Thank you very much.</p></div></div></li><li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-138359"><div id="dsq-comment-header-138359" class="dsq-comment-header"> <cite id="dsq-cite-138359"> <span id="dsq-author-user-138359">deevan</span> </cite></div><div id="dsq-comment-body-138359" class="dsq-comment-body"><div id="dsq-comment-message-138359" class="dsq-comment-message"><p>Hello,</p><p>I tried using the pom configuration for jar with dependencies, which is creating the jar along with dependencies(manifest) and dependency-jars folder beside the artifact.jar. Is it possible to place all the dependency jars inside the artifact.jar?</p><p>Thanks,<br /> Deevan</p></div></div></li><li class="comment even thread-even depth-1" id="dsq-comment-130805"><div id="dsq-comment-header-130805" class="dsq-comment-header"> <cite id="dsq-cite-130805"> <span id="dsq-author-user-130805">monireh jamshidi</span> </cite></div><div id="dsq-comment-body-130805" class="dsq-comment-body"><div id="dsq-comment-message-130805" class="dsq-comment-message"><p>hello,<br /> i want to use tag file java that is been .jar in maven project&#8230;<br /> i do it and from it tag file project make .jar and i put that jar file in pom file project maven dependency &#8230;<br /> but i can not see tag file</p></div></div></li><li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-130794"><div id="dsq-comment-header-130794" class="dsq-comment-header"> <cite id="dsq-cite-130794"> <span id="dsq-author-user-130794">monireh jamshidi</span> </cite></div><div id="dsq-comment-body-130794" class="dsq-comment-body"><div id="dsq-comment-message-130794" class="dsq-comment-message"><p>hello,<br /> i want to use tag file java that is been .jar in maven project&#8230;</p></div></div></li><li class="post pingback"><p>Pingback: <a href='http://www.mkyong.com/maven/how-to-create-a-manifest-file-with-maven/' rel='external nofollow' class='url'>How to create a manifest file with Maven</a>()</p></li></li><li class="comment even thread-even depth-1" id="dsq-comment-123070"><div id="dsq-comment-header-123070" class="dsq-comment-header"> <cite id="dsq-cite-123070"> <a id="dsq-author-user-123070" href="http://ducquoc.wordpress.com" target="_blank" rel="nofollow">DucQuoc.wordpress.com</a> </cite></div><div id="dsq-comment-body-123070" class="dsq-comment-body"><div id="dsq-comment-message-123070" class="dsq-comment-message"><p>Thanks for sharing nice tips.</p><p>You can also use maven-assembly-plugin or maven-shade-plugin to create a JAR which can be executable and including dependent classes.<br /> <a href="http://ducquoc.wordpress.com/2012/03/03/apache-maven-tips/" rel="nofollow">http://ducquoc.wordpress.com/2012/03/03/apache-maven-tips/</a></p><p>&#8211;Duc</p></div></div></li><li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-122992"><div id="dsq-comment-header-122992" class="dsq-comment-header"> <cite id="dsq-cite-122992"> <span id="dsq-author-user-122992">Yiannis</span> </cite></div><div id="dsq-comment-body-122992" class="dsq-comment-body"><div id="dsq-comment-message-122992" class="dsq-comment-message"><p>Great stuff! Nice tutorial!<br /> Do you think it would be worth mentioning the onejar plugin for executable jars with maven?</p><p>Cheers!</p></div></div><ul class="children"><li class="comment byuser comment-author-mkyong bypostauthor even depth-2" id="dsq-comment-123022"><div id="dsq-comment-header-123022" class="dsq-comment-header"> <cite id="dsq-cite-123022"> <a id="dsq-author-user-123022" href="http://www.mkyong.com" target="_blank" rel="nofollow">mkyong</a> </cite></div><div id="dsq-comment-body-123022" class="dsq-comment-body"><div id="dsq-comment-message-123022" class="dsq-comment-message"><p>Article is updated, thanks for introduce one-jar. Did you try it before? will different clssloader bring any problem?</p></div></div><ul class="children"><li class="comment odd alt depth-3" id="dsq-comment-123040"><div id="dsq-comment-header-123040" class="dsq-comment-header"> <cite id="dsq-cite-123040"> <span id="dsq-author-user-123040">Yiannis</span> </cite></div><div id="dsq-comment-body-123040" class="dsq-comment-body"><div id="dsq-comment-message-123040" class="dsq-comment-message"><p>Yes, I have used it for making executable jars. I think its configuration is easier.<br /> However when I create my own jar library (with no main method) which depends on other libraries, I use the Maven Shade Plugin <a href="http://maven.apache.org/plugins/maven-shade-plugin/" rel="nofollow">http://maven.apache.org/plugins/maven-shade-plugin/</a></p></div></div></li><li class="comment even depth-3" id="dsq-comment-123475"><div id="dsq-comment-header-123475" class="dsq-comment-header"> <cite id="dsq-cite-123475"> <span id="dsq-author-user-123475">David</span> </cite></div><div id="dsq-comment-body-123475" class="dsq-comment-body"><div id="dsq-comment-message-123475" class="dsq-comment-message"><p>Here is also nice fresh post about maven one jar: <a href="http://java.dzone.com/articles/simple-powerful-concept" rel="nofollow">http://java.dzone.com/articles/simple-powerful-concept</a></p><p>Thank you for many usefull blog post!</p></div></div></li><li class="comment odd alt depth-3" id="dsq-comment-137746"><div id="dsq-comment-header-137746" class="dsq-comment-header"> <cite id="dsq-cite-137746"> <span id="dsq-author-user-137746">Ankan</span> </cite></div><div id="dsq-comment-body-137746" class="dsq-comment-body"><div id="dsq-comment-message-137746" class="dsq-comment-message"><p>What will be the settings.xml for this example ?</p></div></div></li></ul></li></ul></li></ul></div></div><script type="text/javascript">/*<![CDATA[*/var disqus_url='http://www.mkyong.com/maven/how-to-create-a-jar-file-with-maven/';var disqus_identifier='12775 http://www.mkyong.com/?p=12775';var disqus_container_id='disqus_thread';var disqus_shortname='mkyong';var disqus_title="How to create a jar file with Maven";var disqus_config_custom=window.disqus_config;var disqus_config=function(){this.language='';this.callbacks.onReady.push(function(){var script=document.createElement('script');script.async=true;script.src='?cf_action=sync_comments&post_id=12775';var firstScript=document.getElementsByTagName('script')[0];firstScript.parentNode.insertBefore(script,firstScript);});if(disqus_config_custom){disqus_config_custom.call(this);}};(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();/*]]>*/</script></div></article></div><!-- google_ad_section_end --></div><div class="col-md-4"><div id="right-container"><div id="sidebar"><div class="sidebar-box align-center hide_if_width_less_300"><div class="box"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="7072877400" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div><div class="sidebar-box align-center hide_if_width_less_300"><div class="box"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="5738517670" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div><div class="sidebar-box align-center hide_if_width_less_300"><div class="box"><div class="fb-page" data-href="https://www.facebook.com/java.tutorial" data-width="300" data-height="250" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div></div></div><div class="sidebar-box align-center hide_if_width_less_800"><div class="box"><div data-type="ad" data-publisher="lqm.j2ee.site" data-zone="ron" data-format="300x250" data-tags="Java%2cSpring%2cAndroid%2cMobile%2cjQuery%2cUnit%20Test%2cASP.NET%20MVC%2cDI%2cTDD"></div></div></div><div class="sidebar-box align-center hide_if_width_less_800"><div class="box"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-2836379775501347" data-ad-slot="7953295395" data-ad-region="mkyongregion"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div><div class="sidebar-box align-center hide_if_width_less_800"><div class="box"><div data-type="ad" data-publisher="lqm.j2ee.site" data-zone="ron" data-format="160x600" data-tags="Java%2cSpring%2cAndroid%2cMobile%2cjQuery%2cUnit%20Test%2cASP.NET%20MVC%2cDI%2cTDD"></div></div></div><div class="sidebar-box"><div class="title">Rising Posts (100k-500k pv)</div><div id="sidebar-rising-post-100k">Loading...</div></div><div class="sidebar-box"><div class="title">Rising Posts (10k-99k pv)</div><div id="sidebar-rising-post-10k">Loading...</div></div><div class="sidebar-box"><div class="title">Rising Posts (&lt;10k pv)</div><div id="sidebar-rising-post-0k">Loading...</div></div><div class="sidebar-box hide_if_width_less_800"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-2836379775501347" data-ad-slot="3110889791"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div></div></div></div></div><div class="align-center background-grey" style="width:100%;height:100%;padding:20px 0"><div data-type="ad" data-publisher="lqm.j2ee.site" data-zone="ron" data-format="728x90" data-tags="Java%2cSpring%2cAndroid%2cMobile%2cjQuery%2cUnit%20Test%2cASP.NET%20MVC%2cDI%2cTDD"></div></div><footer><div id="footer-main"><div class="container"><div class="row"><div class="col-md-5 footer-widget"><h4>Favorites Links</h4><div class="menu-fav-links-container"><ul id="menu-fav-links" class="menu"><li id="menu-item-13669" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13669"><a href="http://developer.android.com/training/index.html">Android Getting Started</a></li><li id="menu-item-13670" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13670"><a href="https://cloud.google.com/appengine/docs/java/">Google App Engine &#8211; Java</a></li><li id="menu-item-13671" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13671"><a href="http://docs.spring.io/spring/docs/2.5.x/reference/index.html">Spring 2.5.x Documentation</a></li><li id="menu-item-13672" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13672"><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/">Spring 3.2.x Documentation</a></li><li id="menu-item-13673" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13673"><a href="http://docs.spring.io/spring/docs/4.1.x/spring-framework-reference/html/">Spring 4.1.x Documentation</a></li><li id="menu-item-13675" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13675"><a href="http://docs.oracle.com/javaee/5/tutorial/doc/docinfo.html">Java EE 5 Tutorial</a></li><li id="menu-item-13676" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13676"><a href="http://docs.oracle.com/javaee/6/tutorial/doc/docinfo.html">Java EE 6 Tutorial</a></li><li id="menu-item-13677" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13677"><a href="https://docs.oracle.com/javaee/7/tutorial/index.html">Java EE 7 Tutorial</a></li><li id="menu-item-13678" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13678"><a href="http://docs.oracle.com/javase/6/docs/api/overview-summary.html">Java 6 API</a></li><li id="menu-item-13679" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13679"><a href="http://docs.oracle.com/javase/7/docs/api/overview-summary.html">Java 7 API</a></li><li id="menu-item-13680" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13680"><a href="http://docs.oracle.com/javase/8/docs/api/overview-summary.html">Java 8 API</a></li><li id="menu-item-14082" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14082"><a href="http://docs.oracle.com/javase/tutorial/index.html">Oracle J2SE Tutorials</a></li><li id="menu-item-13681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13681"><a href="https://javaserverfaces.java.net/">JSF Home Page</a></li><li id="menu-item-13682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13682"><a href="https://jsp.java.net/">JSP Home Page</a></li><li id="menu-item-13674" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13674"><a href="http://search.maven.org/">Maven Central Repository</a></li><li id="menu-item-14083" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14083"><a href="https://docs.gradle.org/current/userguide/userguide.html">Gradle User Guide</a></li><li id="menu-item-13683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13683"><a href="http://hibernate.org/orm/">Hibernate ORM</a></li><li id="menu-item-13684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13684"><a href="https://jax-ws.java.net/">JAX-WS Home Page</a></li><li id="menu-item-13685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13685"><a href="https://jax-ws.java.net/">JAX-RS Home Page (Jersey)</a></li><li id="menu-item-14084" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14084"><a href="http://tomcat.apache.org/tomcat-8.0-doc/index.html">Tomcat 8 Documentation</a></li></ul></div></div><div class="col-md-5 footer-widget"><h4>Partners & Bookmarks</h4><div class="menu-friends-partners-container"><ul id="menu-friends-partners" class="menu"><li id="menu-item-13664" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13664"><a href="http://www.javacodegeeks.com/">Java Code Geeks</a></li><li id="menu-item-13665" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13665"><a href="http://beust.com/weblog/">TestNG Founder</a></li><li id="menu-item-13686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13686"><a href="https://dzone.com">DZone</a></li></ul></div> <br/><br/></div><div class="col-md-5 footer-widget"><h4>About Mkyong.com</h4><p>Mkyong.com is for Java and J2EE developers, all examples are simple and easy to understand, and well tested in my development environment.</p><p> Mkyong.com is created, written by, and maintained by Yong Mook Kim, aka Mkyong. It is built on <a href="https://wordpress.org/" target="_blank">WordPress</a>, hosted by <a href="//www.liquidweb.com/?RID=mkyong" target="_blank">Liquid Web</a>, and the caches are served by CloudFlare CDN.</p></div></div></div></div><div id="footer-copyright"><div class="container"><div class="row"><div class="col-md-15"> Copyright &copy; 2008-2016 Mkyong.com, all rights reserved. <a href="/privacy-policy/">Privacy Policy</a></div></div></div></div><script type="text/javascript">/*<![CDATA[*/var disqus_shortname='mkyong';(function(){var nodes=document.getElementsByTagName('span');for(var i=0,url;i<nodes.length;i++){if(nodes[i].className.indexOf('dsq-postid')!=-1&&nodes[i].parentNode.tagName=='A'){nodes[i].parentNode.setAttribute('data-disqus-identifier',nodes[i].getAttribute('data-dsqidentifier'));url=nodes[i].parentNode.href.split('#',1);if(url.length==1){url=url[0];}
+else{url=url[1];}
+nodes[i].parentNode.href=url+'#disqus_thread';}}
+var s=document.createElement('script');s.async=true;s.type='text/javascript';s.src='//'+disqus_shortname+'.disqus.com/count.js';(document.getElementsByTagName('HEAD')[0]||document.getElementsByTagName('BODY')[0]).appendChild(s);}());/*]]>*/</script><script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script><script type='text/javascript' src='http://www.mkyong.com/wp-content/themes/mkyong/js/prism.js?ver=1.2'></script><script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script><script type='text/javascript' src='http://www.mkyong.com/wp-content/themes/mkyong/js/mk-utils.min.js?ver=1.4.9'></script><script type='text/javascript' src='http://www.mkyong.com/wp-includes/js/wp-embed.min.js?ver=4.7.3'></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-752408-5','auto');ga('send','pageview');</script><script type='text/javascript'>function _dmBootstrap(file){var _dma=document.createElement('script');_dma.type='text/javascript';_dma.async=true;_dma.src=('https:'==document.location.protocol?'https://':'http://')+file;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(_dma);}
+function _dmFollowup(file){if(typeof DMAds==='undefined')_dmBootstrap('cdn2.DeveloperMedia.com/a.min.js');}
+(function(){_dmBootstrap('cdn1.DeveloperMedia.com/a.min.js');setTimeout(_dmFollowup,2000);})();</script><div id="fb-root"></div><script>/*<![CDATA[*/(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=265494296867482&version=v2.3";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));/*]]>*/</script><script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script></footer></body></html>
