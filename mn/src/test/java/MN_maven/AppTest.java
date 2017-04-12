@@ -33,7 +33,8 @@ public class AppTest
      */
     public void testApp()
     {
-        assertEquals(5, App.max(4,5));
-    	assertEquals(5, App.max(5,4));
+    	App max = new App();
+        assertEquals(5, max.max(4,5));
+    	assertEquals(5, max.max(5,4));
     }
 }
